@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  db:
+    image: 'mongo:latest'
+    container_name: 'mongodb'
+    environment:
+      MONGO_INITDB_DATABASE: appfollow
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+    - ./mongo-volume:/data/db
+    ports:
+    - "27017:27017"
+  app:
+    container_name: appfollow
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./src:/app"
+    command: >
+      bash -c 'export PYTHONPATH="/app" && python core/app.py'
+    environment:
+      DB_USER: root
+      DB_PASS: password
+  tasks:
+    container_name: tasks
+    build: .
+    environment:
+      STORAGE_REFRESH_RATE: 1
+      DB_USER: root
+      DB_PASS: password
+    depends_on:
+      - db
+    command: >
+      bash -c 'export PYTHONPATH="/app" && python tasks.py'
