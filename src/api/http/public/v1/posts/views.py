@@ -4,10 +4,10 @@ from http import HTTPStatus
 from flask import jsonify, request
 from flask_restful import Resource
 
-from hacker_rank import services as hk, dataclasses as dc
+from hacker_news import dataclasses as dc, services as hn
 from settings import API_POST_LIMIT
 
-logger = logging.getLogger('hacker_rank')
+logger = logging.getLogger('hacker_news')
 
 
 class HackerPostsResource(Resource):
@@ -37,7 +37,7 @@ class HackerPostsResource(Resource):
 
         posts = [
             {'id': p.id, 'title': p.title, 'url': p.url, 'saved_at': p.saved_at}
-            for p in hk.get_posts(**limit_offset)
+            for p in hn.get_posts(**limit_offset)
         ]
 
         logger.debug(f'Got {len(posts)} posts')

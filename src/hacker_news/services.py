@@ -3,11 +3,11 @@ from operator import itemgetter
 from typing import List
 
 from common.http.clients import SimpleHttpClient
-from hacker_rank._controllers import HackerRankGateway
 from settings import STORAGE_LIMIT
 from . import _storage, _utils, dataclasses as dc
+from ._controllers import HackerRankGateway
 
-logger = logging.getLogger('hacker_rank')
+logger = logging.getLogger('hacker_news')
 
 gateway = HackerRankGateway(SimpleHttpClient())
 

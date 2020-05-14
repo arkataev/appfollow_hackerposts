@@ -6,7 +6,7 @@ from timeloop import Timeloop
 from core.controllers import refresh_posts_storage
 from settings import STORAGE_REFRESH_RATE
 
-logger = logging.getLogger('hacker_rank')
+logger = logging.getLogger('hacker_news')
 
 tl = Timeloop()
 

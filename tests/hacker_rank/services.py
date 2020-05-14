@@ -1,4 +1,4 @@
-from hacker_rank import services as hr
+from hacker_news import services as hr
 
 
 

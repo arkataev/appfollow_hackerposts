@@ -4,9 +4,9 @@ import time
 from typing import List
 
 from common.http import clients
-from hacker_rank import dataclasses as dc
+from . import dataclasses as dc
 
-logger = logging.getLogger('hacker_rank')
+logger = logging.getLogger('hacker_news')
 
 
 class GatewayError(Exception):
